@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="my.snapshot.mapper.ForexTradeMapper" >
+    <resultMap id="ForexTrade" type="my.snapshot.bean.ForexTrade" >
+        <id column="deal" property="deal" jdbcType="VARCHAR" />
+        <result column="login" property="login" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        deal, login, type
+    </sql>
+ 
+    <select id="findAll" resultMap="ForexTrade"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM forex_trade
+    </select>
+  
+</mapper>
