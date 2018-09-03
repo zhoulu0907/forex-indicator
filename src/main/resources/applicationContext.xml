@@ -25,15 +25,7 @@
 	             <property name="clientMode" value="${ignite.clientmode:true}"/>
 	             <property name="peerClassLoadingEnabled" value="true"/>
 	             
-				 <!-- <property name="discoverySpi">
-				   <bean class="org.apache.ignite.spi.discovery.zk.ZookeeperDiscoverySpi">
-				     <property name="zkConnectionString" value="127.0.0.1:2181"/>
-				     <property name="sessionTimeout" value="30000"/>
-				     <property name="zkRootPath" value="/apacheIgnite"/>
-				     <property name="joinTimeout" value="10000"/>
-				   </bean>
-				 </property> -->
-			    <property name="discoverySpi">
+			     <property name="discoverySpi">
 			        <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
 			            <property name="ipFinder">
 			                <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.zk.TcpDiscoveryZookeeperIpFinder">
@@ -41,7 +33,19 @@
 			                </bean>
 			            </property>
 			        </bean>
-			    </property>
+			     </property>
+			     
+			     <!-- Enabling Apache Ignite native persistence. -->
+				 <property name="dataStorageConfiguration">
+				    <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+				      <property name="defaultDataRegionConfiguration">
+				        <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+				          <property name="persistenceEnabled" value="true"/>
+				        </bean>
+				      </property>
+		              <property name="walSegments" value="1"/>
+				    </bean>
+				 </property>
 	         </bean>
 	     </property>
 	 </bean>
