@@ -16,10 +16,7 @@ public class UpdateTradeData {
 	
 	@Resource(name="ForexService")
 	private ForexTradeService forexTradeService;
-	
-	@IgniteInstanceResource
-	private Ignite ignite;
-	
+		
 	public void updateTradeDataEveryDay() {
 		List<ForexTrade> forexTradeList = forexTradeService.findAll();
 	}

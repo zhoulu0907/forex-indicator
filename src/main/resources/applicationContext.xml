@@ -33,15 +33,15 @@
 				     <property name="joinTimeout" value="10000"/>
 				   </bean>
 				 </property> -->
-				 <property name="discoverySpi">
-				 	<bean id="ignite.cfg.discoverySpi" class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
-				 		<property name="ipFinder">
-				 			<bean id="ignite.cfg.discoverySpi.ipFinder" class="org.apache.ignite.spi.discovery.tcp.ipfinder.zk.TcpDiscoveryZookeeperIpFinder">
-				 				<property name="zkConnectionString" value="${ignite.zookeeper.address}"/>
-				 			</bean>
-				 		</property>
-				 	</bean>
-				 </property>
+			    <property name="discoverySpi">
+			        <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+			            <property name="ipFinder">
+			                <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.zk.TcpDiscoveryZookeeperIpFinder">
+			                    <property name="zkConnectionString" value="127.0.0.1:2181"/>
+			                </bean>
+			            </property>
+			        </bean>
+			    </property>
 	         </bean>
 	     </property>
 	 </bean>

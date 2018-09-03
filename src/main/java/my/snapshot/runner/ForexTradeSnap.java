@@ -22,13 +22,22 @@ public class ForexTradeSnap implements CommandLineRunner {
 
 	@Resource(name="ForexService")
 	private ForexTradeService forexTradeService;
-	@IgniteInstanceResource
-	private Ignite ignite;
 	@Resource
 	private IgniteInitation igniteInitation;
 	@Override
 	public void run(String... arg0) throws Exception {
 		// TODO Auto-generated method stub
+		//test ignite instance
+		Ignite ignite = igniteInitation.getIgniteInstance();
+		ignite.compute().run(new IgniteRunnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				System.out.println("Ignite ok.");
+			}
+			
+		});
 		//初始化Ignite Cache
 		igniteInitation.InitIgniteCache();
 		//获取所有交易数据
