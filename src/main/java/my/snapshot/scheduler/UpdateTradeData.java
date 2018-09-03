@@ -14,7 +14,7 @@ import my.snapshot.service.ForexTradeService;
 @Component
 public class UpdateTradeData {
 	
-	@Resource(name="ForexService")
+	@Resource(name="ForexTradeServiceMysql")
 	private ForexTradeService forexTradeService;
 		
 	public void updateTradeDataEveryDay() {

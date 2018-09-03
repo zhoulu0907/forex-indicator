@@ -1,6 +1,9 @@
 package my.snapshot.bean;
 
+import org.apache.ignite.cache.query.annotations.QuerySqlField;
+
 public class ForexTrade {
+	@QuerySqlField
 	private String deal;
 	private String login;
 	private String type;
