@@ -1,8 +1,15 @@
 package my.snapshot.bean;
 
+import java.io.Serializable;
+
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 
-public class ForexTrade {
+public class ForexTrade implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@QuerySqlField
 	private String deal;
 	private String login;

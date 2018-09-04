@@ -9,4 +9,6 @@ import my.snapshot.bean.ForexTrade;
 @Mapper
 public interface ForexTradeMapper {
 	public List<ForexTrade> findAll();
+
+	public List<ForexTrade> find(Integer startIndex, Integer size);
 }

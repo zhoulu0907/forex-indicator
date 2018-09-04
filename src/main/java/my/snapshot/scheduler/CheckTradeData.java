@@ -1,11 +1,10 @@
-package my.snapshot.runner;
+package my.snapshot.scheduler;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import my.snapshot.bean.ForexTrade;
@@ -13,19 +12,18 @@ import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.IgniteManager;
 import my.snapshot.service.ForexTradeService;
 
-//@Component
-@Order(value=3)
-public class ForexTradeCalculation implements CommandLineRunner{
+@Component
+public class CheckTradeData {
 
 	@Resource
 	private IgniteManager igniteManager;
 	
 	@Resource(name="ForexTradeServiceIgnite")
 	private ForexTradeService forexTradeService;
-	@Override
-	public void run(String... arg0) throws Exception {
-		// TODO Auto-generated method stub
-
+	
+	
+	@Scheduled(initialDelay = 60 * 1000, fixedDelay = 30 * 1000)
+	public void CheckForexTradeData() {
 		igniteManager.getIgniteInstance().cluster().enableWal(IgniteConstants.CACHE_NAME_FOREX_TRADE);
 		long startT = System.currentTimeMillis();
 		List<ForexTrade> forexTradeList = forexTradeService.findAll();
@@ -34,5 +32,4 @@ public class ForexTradeCalculation implements CommandLineRunner{
 			+ ", wal: " + igniteManager.getIgniteInstance().cluster().isWalEnabled(IgniteConstants.CACHE_NAME_FOREX_TRADE)
 			);
 	}
-
 }

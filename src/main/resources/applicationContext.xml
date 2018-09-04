@@ -44,6 +44,8 @@
 				        </bean>
 				      </property>
 		              <property name="walSegments" value="1"/>
+			          <property name="walPath" value="/wal/path"/>
+			          <property name="walArchivePath" value="/wal/path"/>
 				    </bean>
 				 </property>
 	         </bean>

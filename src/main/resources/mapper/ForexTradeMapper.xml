@@ -15,7 +15,12 @@
        SELECT 
        <include refid="Base_Column_List" />
 	   FROM forex_trade
-	   LIMIT 1000
     </select>
   
+  	<select id="find" resultMap="ForexTrade" parameterType="Integer" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM forex_trade
+	   LIMIT #{0}, #{1}
+    </select>
 </mapper>

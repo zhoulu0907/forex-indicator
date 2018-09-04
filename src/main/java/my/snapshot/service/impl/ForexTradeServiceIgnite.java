@@ -38,5 +38,10 @@ public class ForexTradeServiceIgnite implements ForexTradeService {
 		}
 		return forexTradeList;
 	}
+	@Override
+	public List<ForexTrade> find(int startIndex, int size) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

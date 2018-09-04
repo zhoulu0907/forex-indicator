@@ -20,5 +20,11 @@ public class ForexTradeServiceMysql implements ForexTradeService {
 		System.out.println("Query Mysql.");
 		return forexTradeMapper.findAll();
 	}
+	@Override
+	public List<ForexTrade> find(int startIndex, int size) {
+		// TODO Auto-generated method stub
+		System.out.println("Query Mysql.");
+		return forexTradeMapper.find(startIndex, size);
+	}
 
 }
