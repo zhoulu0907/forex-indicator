@@ -23,4 +23,5 @@
 	   FROM forex_trade
 	   LIMIT #{0}, #{1}
     </select>
+  
 </mapper>
