@@ -11,7 +11,7 @@
         deal, login, type
     </sql>
  
-    <select id="findAll" resultMap="ForexTrade"  >
+    <select id="findAll" resultMap="ForexTrade" fetchSize="1000" >
        SELECT 
        <include refid="Base_Column_List" />
 	   FROM forex_trade

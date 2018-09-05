@@ -13,7 +13,7 @@ import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.IgniteManager;
 import my.snapshot.service.ForexTradeService;
 
-//@Component
+@Component
 @Order(value=3)
 public class ForexTradeCalculation implements CommandLineRunner{
 
@@ -29,6 +29,9 @@ public class ForexTradeCalculation implements CommandLineRunner{
 		igniteManager.getIgniteInstance().cluster().enableWal(IgniteConstants.CACHE_NAME_FOREX_TRADE);
 		long startT = System.currentTimeMillis();
 		List<ForexTrade> forexTradeList = forexTradeService.findAll();
+		for (ForexTrade forextrade : forexTradeList) {
+			System.out.println("id: " + forextrade.getDeal() + ", login: " + forextrade.getLogin());
+		}
 		System.out.println("ignite forex data size: " + forexTradeList.size()
 			+ ", use: " + (System.currentTimeMillis() - startT) + " ms."
 			+ ", wal: " + igniteManager.getIgniteInstance().cluster().isWalEnabled(IgniteConstants.CACHE_NAME_FOREX_TRADE)

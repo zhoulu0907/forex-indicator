@@ -12,7 +12,7 @@ import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.IgniteManager;
 import my.snapshot.service.ForexTradeService;
 
-@Component
+//@Component
 public class CheckTradeData {
 
 	@Resource
@@ -22,7 +22,7 @@ public class CheckTradeData {
 	private ForexTradeService forexTradeService;
 	
 	
-	@Scheduled(initialDelay = 60 * 1000, fixedDelay = 30 * 1000)
+	@Scheduled(initialDelay = 10 * 1000, fixedDelay = 10 * 1000)
 	public void CheckForexTradeData() {
 		igniteManager.getIgniteInstance().cluster().enableWal(IgniteConstants.CACHE_NAME_FOREX_TRADE);
 		long startT = System.currentTimeMillis();

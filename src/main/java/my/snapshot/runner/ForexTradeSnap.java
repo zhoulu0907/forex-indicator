@@ -39,6 +39,7 @@ public class ForexTradeSnap implements CommandLineRunner {
 		Ignite ignite = igniteManager.getIgniteInstance();
 		//初始化Ignite Cache
 //		igniteInitation.InitIgniteCache();
+		long startT = System.currentTimeMillis();
 		//获取所有交易数据
 //		List<ForexTrade> forexTradeList = forexTradeService.findAll();
 		List<ForexTrade> forexTradeList = forexTradeService.find(0,1000);
@@ -48,7 +49,9 @@ public class ForexTradeSnap implements CommandLineRunner {
 //					+ ", " + forexTrade.getType());
 //			
 //		}
-		System.out.println("forex trade data size: " + forexTradeList.size());
+		System.out.println("forex trade data size: " + forexTradeList.size()
+				+ ", use:" +(System.currentTimeMillis() - startT)
+				);
 		
 //		ignite.cluster().disableWal(IgniteConstants.CACHE_NAME_FOREX_TRADE);
 		IgniteCache<String, ForexTrade> forexTradeCache = ignite.cache(IgniteConstants.CACHE_NAME_FOREX_TRADE);
@@ -88,13 +91,14 @@ public class ForexTradeSnap implements CommandLineRunner {
 //		}
 //		System.out.println("Batch 2 save: " + saveNum + ", wal: " + ignite.cluster().isWalEnabled(IgniteConstants.CACHE_NAME_FOREX_TRADE));
 		//4. 1 min life cache
-		int batchId = 0;
 		new Thread() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
+				int loop = 0;
 				while(true) {
-					IgniteCache<String, ForexTrade> forexTradeCacheTmp = forexTradeCache.withExpiryPolicy(new CreatedExpiryPolicy(Duration.ONE_MINUTE));
+					IgniteCache<String, ForexTrade> forexTradeCache1 = ignite.cache(IgniteConstants.CACHE_NAME_FOREX_TRADE);
+					IgniteCache<String, ForexTrade> forexTradeCacheTmp = forexTradeCache1.withExpiryPolicy(new CreatedExpiryPolicy(Duration.ONE_MINUTE));
 					long startT = System.currentTimeMillis();
 					
 					for (ForexTrade forexData : forexTradeList) {
@@ -103,15 +107,16 @@ public class ForexTradeSnap implements CommandLineRunner {
 						forexTradeCacheTmp.put(forexKey, forexData);
 					}
 					System.out.println("Save"
-							+ " batch: " + batchId
+							+ " batch: " + loop
 							+ ", data one by one use: " 
 							+ (System.currentTimeMillis() - startT) + "ms.");
 					try {
-						Thread.sleep(60 * 1000);
+						Thread.sleep(5 * 1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					if (loop++ > 100)break;
 				}
 			}
 		}.start();
