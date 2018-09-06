@@ -11,31 +11,35 @@ import org.springframework.stereotype.Component;
 import my.snapshot.bean.ForexTrade;
 import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.IgniteManager;
+import my.snapshot.ignite.model.PortfolioTradeInfo;
 import my.snapshot.service.ForexTradeService;
+import my.snapshot.service.PortfolioTradeInfoService;
 
+/**
+ * @author Administrator
+ * TBD
+ */
 @Component
-@Order(value=3)
+@Order(value=2)
 public class ForexTradeCalculation implements CommandLineRunner{
 
 	@Resource
 	private IgniteManager igniteManager;
 	
-	@Resource(name="ForexTradeServiceIgnite")
-	private ForexTradeService forexTradeService;
+	@Resource(name="PortfolioTradeInfoService")
+	private PortfolioTradeInfoService portfolioTradeInfoService;
 	@Override
 	public void run(String... arg0) throws Exception {
 		// TODO Auto-generated method stub
 
-		igniteManager.getIgniteInstance().cluster().enableWal(IgniteConstants.CACHE_NAME_FOREX_TRADE);
-		long startT = System.currentTimeMillis();
-		List<ForexTrade> forexTradeList = forexTradeService.findAll();
-		for (ForexTrade forextrade : forexTradeList) {
-			System.out.println("id: " + forextrade.getDeal() + ", login: " + forextrade.getLogin());
+		while(true) {
+			long startT = System.currentTimeMillis();
+			List<String> loginList = portfolioTradeInfoService.getLogins();
+			System.out.println("login size: " + loginList.size()
+					+ ", use: " + (System.currentTimeMillis() - startT) + " ms."
+					);
+			Thread.sleep(5 * 1000);
 		}
-		System.out.println("ignite forex data size: " + forexTradeList.size()
-			+ ", use: " + (System.currentTimeMillis() - startT) + " ms."
-			+ ", wal: " + igniteManager.getIgniteInstance().cluster().isWalEnabled(IgniteConstants.CACHE_NAME_FOREX_TRADE)
-			);
 	}
 
 }

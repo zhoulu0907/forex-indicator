@@ -6,12 +6,13 @@ import javax.cache.integration.CacheWriterException;
 
 import org.apache.ignite.cache.store.CacheStoreAdapter;
 
-import my.snapshot.bean.ForexTrade;
+import my.snapshot.ignite.model.PortfolioKey;
+import my.snapshot.ignite.model.PortfolioTradeInfo;
 
-public class ForexCacheStore extends CacheStoreAdapter<String, ForexTrade>{
+public class ForexCacheStore extends CacheStoreAdapter<PortfolioKey, PortfolioTradeInfo>{
 
 	@Override
-	public ForexTrade load(String arg0) throws CacheLoaderException {
+	public PortfolioTradeInfo load(PortfolioKey arg0) throws CacheLoaderException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -23,9 +24,11 @@ public class ForexCacheStore extends CacheStoreAdapter<String, ForexTrade>{
 	}
 
 	@Override
-	public void write(Entry<? extends String, ? extends ForexTrade> arg0) throws CacheWriterException {
+	public void write(Entry<? extends PortfolioKey, ? extends PortfolioTradeInfo> arg0) throws CacheWriterException {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

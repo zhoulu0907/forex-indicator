@@ -1,5 +1,6 @@
 package my.snapshot.ignite;
 
+import javax.annotation.Resource;
 import javax.cache.configuration.Factory;
 import javax.cache.configuration.FactoryBuilder;
 
@@ -15,24 +16,27 @@ import org.springframework.stereotype.Component;
 import my.snapshot.bean.ForexTrade;
 import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.cachestore.ForexTradeCacheFactory;
+import my.snapshot.ignite.model.PortfolioKey;
+import my.snapshot.ignite.model.PortfolioTradeInfo;
+import my.snapshot.service.PortfolioTradeInfoService;
 
 @Component
 public class IgniteManager implements ApplicationContextAware{
 
 	private Ignite ignite;
-	
-	private IgniteCache<String, ForexTrade> forexTradeCache;
-	
+		
 	public void InitIgniteCache() {
 		//1.init forextrade cache
 		//1.1 forex-trade-cache
-		CacheConfiguration<String, ForexTrade> forexTradeCfg = new CacheConfiguration<String, ForexTrade>();
+		CacheConfiguration<PortfolioKey, PortfolioTradeInfo> forexTradeCfg = 
+				new CacheConfiguration<PortfolioKey, PortfolioTradeInfo>();
 		forexTradeCfg.setName(IgniteConstants.CACHE_NAME_FOREX_TRADE);
-		forexTradeCfg.setIndexedTypes(String.class, ForexTrade.class);
-		forexTradeCfg.setCacheStoreFactory(new ForexTradeCacheFactory());
-		forexTradeCfg.setReadThrough(true);
-		forexTradeCfg.setWriteThrough(true);
+		forexTradeCfg.setIndexedTypes(PortfolioKey.class, PortfolioTradeInfo.class);
+//		forexTradeCfg.setCacheStoreFactory(new ForexTradeCacheFactory());
+//		forexTradeCfg.setReadThrough(true);
+//		forexTradeCfg.setWriteThrough(true);
 		ignite.getOrCreateCache(forexTradeCfg);
+		
 	}
 
 	@Override

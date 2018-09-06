@@ -1,23 +1,31 @@
-package my.snapshot.bean;
+package my.snapshot.ignite.model;
 
 import java.io.Serializable;
 
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 
-import my.snapshot.ignite.model.PortfolioKey;
+public class PortfolioTradeInfo implements Serializable{
 
-public class ForexTrade implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private PortfolioKey id;
+	@QuerySqlField
 	private String deal;
+	@QuerySqlField
 	private String login;
 	private String type;
+	@QuerySqlField
 	private String symbol;
 	private Double volume;
-	
+	public PortfolioKey getId() {
+		return id;
+	}
+	public void setId(PortfolioKey id) {
+		this.id = id;
+	}
 	public String getDeal() {
 		return deal;
 	}
@@ -48,6 +56,5 @@ public class ForexTrade implements Serializable{
 	public void setVolume(Double volume) {
 		this.volume = volume;
 	}
-	
 	
 }

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import my.snapshot.bean.ForexTrade;
 
-@Mapper
+//@Mapper
 public interface ForexTradeMapper {
 	public List<ForexTrade> findAll();
 
