@@ -8,11 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import my.snapshot.bean.ForexTrade;
-import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.IgniteManager;
 import my.snapshot.ignite.model.UserTradeInfo;
-import my.snapshot.service.ForexTradeService;
 import my.snapshot.service.PortfolioTradeInfoService;
 
 /**

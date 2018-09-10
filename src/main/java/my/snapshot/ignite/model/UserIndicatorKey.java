@@ -2,6 +2,8 @@ package my.snapshot.ignite.model;
 
 import org.apache.ignite.cache.affinity.AffinityKeyMapped;
 
+import lombok.Data;
+@Data
 public class UserIndicatorKey {
 
 	@AffinityKeyMapped
@@ -9,20 +11,5 @@ public class UserIndicatorKey {
 	
 	private String symbol;
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
 	
 }

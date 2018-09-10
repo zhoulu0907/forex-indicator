@@ -2,28 +2,14 @@ package my.snapshot.runner;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
-import javax.cache.Cache.Entry;
 
-import javax.cache.expiry.CreatedExpiryPolicy;
-import javax.cache.expiry.Duration;
-
-import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteCache;
-import org.apache.ignite.cache.query.QueryCursor;
-import org.apache.ignite.cache.query.SqlQuery;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import my.snapshot.bean.ForexTrade;
-import my.snapshot.constants.IgniteConstants;
-import my.snapshot.ignite.IgniteManager;
 import my.snapshot.ignite.model.UserTradeInfoKey;
 import my.snapshot.ignite.model.UserTradeInfo;
 import my.snapshot.service.ForexTradeService;

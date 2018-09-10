@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import my.snapshot.bean.ForexTrade;
 import my.snapshot.constants.IgniteConstants;

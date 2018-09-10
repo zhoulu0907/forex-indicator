@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.ignite.Ignite;
-import org.apache.ignite.resources.IgniteInstanceResource;
 import org.springframework.stereotype.Component;
 
 import my.snapshot.bean.ForexTrade;
