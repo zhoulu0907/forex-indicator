@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.ignite.cache.affinity.AffinityKeyMapped;
 
-public class PortfolioKey implements Serializable{
+public class UserTradeInfoKey implements Serializable{
 	/**
 	 * 
 	 */

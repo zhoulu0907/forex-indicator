@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import my.snapshot.bean.ForexTrade;
 import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.IgniteManager;
-import my.snapshot.ignite.model.PortfolioTradeInfo;
+import my.snapshot.ignite.model.UserTradeInfo;
 import my.snapshot.service.ForexTradeService;
 import my.snapshot.service.PortfolioTradeInfoService;
 
@@ -38,6 +38,13 @@ public class ForexTradeCalculation implements CommandLineRunner{
 			System.out.println("login size: " + loginList.size()
 					+ ", use: " + (System.currentTimeMillis() - startT) + " ms."
 					);
+			for (String login : loginList) {
+				List<String> symbolList = portfolioTradeInfoService.getSymbolsOfLogin(login);
+				for (String symbol : symbolList) {
+					List<UserTradeInfo> tradeInfoList = 
+							portfolioTradeInfoService.getTradeInfos(login, symbol);
+				}
+			}
 			Thread.sleep(5 * 1000);
 		}
 	}

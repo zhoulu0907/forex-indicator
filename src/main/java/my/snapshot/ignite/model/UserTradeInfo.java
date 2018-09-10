@@ -4,15 +4,14 @@ import java.io.Serializable;
 
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 
-public class PortfolioTradeInfo implements Serializable{
+public class UserTradeInfo implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private PortfolioKey id;
-	@QuerySqlField
+	private UserTradeInfoKey id;
 	private String deal;
 	@QuerySqlField
 	private String login;
@@ -20,10 +19,13 @@ public class PortfolioTradeInfo implements Serializable{
 	@QuerySqlField
 	private String symbol;
 	private Double volume;
-	public PortfolioKey getId() {
+	private Long holdtime;//s
+	private Double profit;
+	
+	public UserTradeInfoKey getId() {
 		return id;
 	}
-	public void setId(PortfolioKey id) {
+	public void setId(UserTradeInfoKey id) {
 		this.id = id;
 	}
 	public String getDeal() {
@@ -56,5 +58,18 @@ public class PortfolioTradeInfo implements Serializable{
 	public void setVolume(Double volume) {
 		this.volume = volume;
 	}
+	public long getHoldtime() {
+		return holdtime;
+	}
+	public void setHoldtime(long holdtime) {
+		this.holdtime = holdtime;
+	}
+	public Double getProfit() {
+		return profit;
+	}
+	public void setProfit(Double profit) {
+		this.profit = profit;
+	}
+
 	
 }

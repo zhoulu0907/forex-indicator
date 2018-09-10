@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 import my.snapshot.bean.ForexTrade;
 import my.snapshot.constants.IgniteConstants;
 import my.snapshot.ignite.cachestore.ForexTradeCacheFactory;
-import my.snapshot.ignite.model.PortfolioKey;
-import my.snapshot.ignite.model.PortfolioTradeInfo;
+import my.snapshot.ignite.model.UserTradeInfoKey;
+import my.snapshot.ignite.model.UserTradeInfo;
 import my.snapshot.service.PortfolioTradeInfoService;
 
 @Component
@@ -28,10 +28,10 @@ public class IgniteManager implements ApplicationContextAware{
 	public void InitIgniteCache() {
 		//1.init forextrade cache
 		//1.1 forex-trade-cache
-		CacheConfiguration<PortfolioKey, PortfolioTradeInfo> forexTradeCfg = 
-				new CacheConfiguration<PortfolioKey, PortfolioTradeInfo>();
+		CacheConfiguration<UserTradeInfoKey, UserTradeInfo> forexTradeCfg = 
+				new CacheConfiguration<UserTradeInfoKey, UserTradeInfo>();
 		forexTradeCfg.setName(IgniteConstants.CACHE_NAME_FOREX_TRADE);
-		forexTradeCfg.setIndexedTypes(PortfolioKey.class, PortfolioTradeInfo.class);
+		forexTradeCfg.setIndexedTypes(UserTradeInfoKey.class, UserTradeInfo.class);
 //		forexTradeCfg.setCacheStoreFactory(new ForexTradeCacheFactory());
 //		forexTradeCfg.setReadThrough(true);
 //		forexTradeCfg.setWriteThrough(true);

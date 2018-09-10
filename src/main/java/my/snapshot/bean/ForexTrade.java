@@ -1,10 +1,8 @@
 package my.snapshot.bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
-import org.apache.ignite.cache.query.annotations.QuerySqlField;
-
-import my.snapshot.ignite.model.PortfolioKey;
 
 public class ForexTrade implements Serializable{
 	/**
@@ -17,6 +15,9 @@ public class ForexTrade implements Serializable{
 	private String type;
 	private String symbol;
 	private Double volume;
+	private Timestamp opentime;
+	private Timestamp closetime;
+	private Double profit;
 	
 	public String getDeal() {
 		return deal;
@@ -47,6 +48,24 @@ public class ForexTrade implements Serializable{
 	}
 	public void setVolume(Double volume) {
 		this.volume = volume;
+	}
+	public Timestamp getOpentime() {
+		return opentime;
+	}
+	public void setOpentime(Timestamp opentime) {
+		this.opentime = opentime;
+	}
+	public Timestamp getClosetime() {
+		return closetime;
+	}
+	public void setClosetime(Timestamp closetime) {
+		this.closetime = closetime;
+	}
+	public Double getProfit() {
+		return profit;
+	}
+	public void setProfit(Double profit) {
+		this.profit = profit;
 	}
 	
 	
