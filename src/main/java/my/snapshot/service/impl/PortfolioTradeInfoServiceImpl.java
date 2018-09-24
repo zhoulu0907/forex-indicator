@@ -41,7 +41,7 @@ public class PortfolioTradeInfoServiceImpl implements PortfolioTradeInfoService 
 	public List<String> getLogins() {
 		// TODO Auto-generated method stub
 		List<String> loginList = new ArrayList<String>();
-		SqlFieldsQuery sql = new SqlFieldsQuery("select distinct login from PortfolioTradeInfo");
+		SqlFieldsQuery sql = new SqlFieldsQuery("select distinct login from UserTradeInfo");
 		
 		try(QueryCursor<List<?>> cursor = tradeInfoCache.query(sql)){
 			for (List<?> row : cursor) {
@@ -80,7 +80,7 @@ public class PortfolioTradeInfoServiceImpl implements PortfolioTradeInfoService 
 	public List<String> getSymbolsOfLogin(String login) {
 		// TODO Auto-generated method stub
 		List<String> symbolList = new ArrayList<>();
-		SqlFieldsQuery sql = new SqlFieldsQuery("select distinct symbol from PortfolioTradeInfo where login = ?");
+		SqlFieldsQuery sql = new SqlFieldsQuery("select distinct symbol from UserTradeInfo where login = ?");
 		try(QueryCursor<List<?>> cursor = tradeInfoCache.query(sql.setArgs(login))){
 			for (List<?> e : cursor) {
 				symbolList.add((String) e.get(0));

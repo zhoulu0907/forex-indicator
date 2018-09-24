@@ -16,7 +16,7 @@
         deal, login, type, symbol, volume, opentime, closetime, profit
     </sql>
  
-    <select id="findAll" resultMap="ForexTrade" fetchSize="1000" >
+    <select id="findAll" resultMap="ForexTrade" fetchSize="10000" >
        SELECT 
        <include refid="Base_Column_List" />
 	   FROM forex_trade

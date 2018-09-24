@@ -51,7 +51,8 @@ public class ForexTradeSnap implements CommandLineRunner {
 		};
 	}
 	private void SaveTradeInfo() {
-		List<ForexTrade> forexTradeList = forexTradeServiceDb.find(0, 1000);
+//		List<ForexTrade> forexTradeList = forexTradeServiceDb.find(0, 1000);
+		List<ForexTrade> forexTradeList = forexTradeServiceDb.findAll();
 		if (forexTradeList == null || forexTradeList.size() == 0) {
 			return;
 		}
